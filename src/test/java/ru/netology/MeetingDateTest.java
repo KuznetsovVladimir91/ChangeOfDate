@@ -39,8 +39,7 @@ public class MeetingDateTest {
         $("[data-test-id=agreement]").click();
         $(byText("Запланировать")).click();
 
-        $("[data-test-id=success-notification]").shouldHave(text("Успешно!"))
-                .shouldBe(visible, Duration.ofSeconds(15));
+        $("[data-test-id=success-notification]").shouldHave(text("Успешно!"));
         $("[class=notification__content]")
                 .shouldHave(text("Встреча успешно запланирована на " + meetingDate));
 
