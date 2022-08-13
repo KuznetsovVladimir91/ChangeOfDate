@@ -10,11 +10,8 @@ import java.util.Locale;
 
 public class DataGenerator {
 
-    private Faker faker;
-
-    @BeforeEach
-    void setUpAll() {
-        faker = new Faker(new Locale("ru"));
+    public static String generateDate(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     @UtilityClass

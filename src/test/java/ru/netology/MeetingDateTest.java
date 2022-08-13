@@ -31,7 +31,7 @@ public class MeetingDateTest {
         $("[placeholder=Город]").setValue(info.getCity());
 
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
-        String meetingDate = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String meetingDate = DataGenerator.generateDate(5);
         $("[data-test-id=date] input").setValue(meetingDate);
 
         $("[data-test-id=name] input").setValue(info.getName());
@@ -44,7 +44,7 @@ public class MeetingDateTest {
                 .shouldHave(text("Встреча успешно запланирована на " + meetingDate));
 
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.DELETE);
-        String otherMeetingDate = LocalDate.now().plusDays(7).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String otherMeetingDate = DataGenerator.generateDate(7);
         $("[data-test-id=date] input").setValue(otherMeetingDate);
 
         $(byText("Запланировать")).click();
