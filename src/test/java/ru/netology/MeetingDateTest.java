@@ -1,8 +1,11 @@
 package ru.netology;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.CreditCardType;
 import com.github.javafaker.Faker;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +23,11 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MeetingDateTest {
+
+    @BeforeAll
+    public static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
 
 
     @Test
@@ -55,6 +63,11 @@ public class MeetingDateTest {
         $("[class=notification__content]")
                 .shouldHave(text("Встреча успешно запланирована на " + otherMeetingDate));
 
+    }
+
+    @AfterAll
+    public static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
     }
 
 }
